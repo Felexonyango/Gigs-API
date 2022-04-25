@@ -17,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
+
+Route::get('/',       [ListingController::class, "index"]);
 Route::post('/create',[ListingController::class, "create"]);
+Route::get('/{id}',       [ListingController::class, "show"]);
 

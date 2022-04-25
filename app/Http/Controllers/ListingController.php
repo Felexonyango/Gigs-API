@@ -15,7 +15,12 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
+        
+        $post = Listing::all();
+        if ($post) {
+            return response()->json(['success' => true, 'succes' => $post]);
+        }
+
     }
 
     /**
@@ -76,9 +81,14 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function show(Listing $listing)
+    public function show($id)
     {
-        //
+    
+        $post = Listing::find($id);
+        if ($post) {
+            return response()->json(['success' => true, 'succes' => $post]);
+        }
+  
     }
 
     /**
