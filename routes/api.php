@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
+Route::post('/create',[ListingController::class, "create"]);
 
