@@ -24,6 +24,7 @@ Route::group(['middleware'=>['auth:sanctum']],function () {
     Route::post('/create',[ListingController::class, "create"]);
     Route::put('/{id}', [ListingController::class, "update"]);
     Route::delete('/{id}', [ListingController::class, "destroy"]);
+    Route::post('/logout',[AuthController::class, "logout"]);
 });
 
 //public routes
