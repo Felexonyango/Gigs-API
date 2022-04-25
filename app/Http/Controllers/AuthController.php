@@ -29,7 +29,7 @@ class AuthController extends Controller
         $user= User::create([
             'name'=>$request['name'],
             'email'=>$request['email'],
-            'password' => Hash::make($request['password'])
+            'password' => bcrypt($request['password']),
         ]);
         
         $token=$user->createToken('token')->plainTextToken;
@@ -63,8 +63,18 @@ class AuthController extends Controller
         else{
             return response()->json(['success'=>false,'error'=>'wrong login credentials' ], 500);
         }
+        
 
+       }
+       public function signout()
+       {
+           auth()->user()->tokens()->delete();
+   
+           return [
+               'message' => 'Tokens Revoked'
+           ];
        }
 
     }
+    
 

@@ -18,9 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 
-Route::get('/',       [ListingController::class, "index"]);
-Route::post('/create',[ListingController::class, "create"]);
-Route::get('/{id}',       [ListingController::class, "show"]);
-Route::put('/{id}', [ListingController::class, "update"]);
-Route::delete('/{id}', [ListingController::class, "destroy"]);
+//protected routes
+
+Route::group(['middleware'=>['auth:sanctum']],function () {
+    Route::post('/create',[ListingController::class, "create"]);
+    Route::put('/{id}', [ListingController::class, "update"]);
+    Route::delete('/{id}', [ListingController::class, "destroy"]);
+});
+
+//public routes
+    Route::get('/',  [ListingController::class, "index"]);
+    Route::get('/{id}', [ListingController::class, "show"]);
+
+   
+
+
+
 
