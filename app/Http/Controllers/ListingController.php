@@ -109,9 +109,13 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Listing $listing)
+    public function update(Request $request, $id)
     {
-        //
+        
+        $post= Listing::find($id);
+        $post->update($request->all());
+        return $post;
+
     }
 
     /**
@@ -120,8 +124,12 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Listing $listing)
+    public function destroy($id)
     {
-        //
+        $post =Listing::destroy($id);
+        return response()->json(['success' =>true, 'data'=>$post]);
+       
+     
     }
+   
 }

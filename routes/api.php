@@ -21,4 +21,6 @@ Route::post('/login', [AuthController::class, "login"]);
 Route::get('/',       [ListingController::class, "index"]);
 Route::post('/create',[ListingController::class, "create"]);
 Route::get('/{id}',       [ListingController::class, "show"]);
+Route::put('/{id}', [ListingController::class, "update"]);
+Route::delete('/{id}', [ListingController::class, "destroy"]);
 
