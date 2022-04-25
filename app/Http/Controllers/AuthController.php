@@ -31,9 +31,12 @@ class AuthController extends Controller
             'email'=>$request['email'],
             'password' => Hash::make($request['password'])
         ]);
+        
+        $token=$user->createToken('token')->plainTextToken;
+
 
     
-        return response()->json(['success' => true, 'response' => $user]);
+        return response()->json(['success' => true, 'token' => $token]);
 
 
        }
@@ -49,12 +52,15 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(['success' => false, 'error' => $validator->messages()]);
         }
+
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            return response()->json(['success'=>true,'userDetails'=>$user ], 200);
+
+            $token=$user->createToken('token')->plainTextToken;
+            return response()->json(['success' => true, 'token' => $token]);
         }
         else{
-            return response()->json(['success'=>false,'error'=>'wrong login credentials' ], 200);
+            return response()->json(['success'=>false,'error'=>'wrong login credentials' ], 500);
         }
 
        }
