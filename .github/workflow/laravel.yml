@@ -3,7 +3,8 @@ name: Laravel
 on:
   push:
     branches: [ main ]
-
+  pull_request:
+    branches: [ main ]
 
 jobs:
   laravel-tests:
@@ -26,9 +27,9 @@ jobs:
     - name: Create Database
       run: |
         mkdir -p database
-        touch database/database.pgsql
+        touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DB_CONNECTION: pgsql
-        DB_DATABASE: database/database.pgsql
-      run: vendor/bin/phpunit
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan test
