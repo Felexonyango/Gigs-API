@@ -49,15 +49,8 @@ class ListingController extends Controller
     
         $post['user_id'] = auth()->id();
 
-        $post= Listing::create([
-            'title'=>$request['title'],
-            'company'=>$request['company'],
-            'location' =>$request['location'],
-            'website' =>$request['website'],
-            'email'=>$request['email'],
-            'description'=>$request['description']
+        $post=Listing::create($input);
     
-        ]);
         return response()->json(['success' => true, 'succes' => $post]);
         
     
