@@ -9,16 +9,18 @@ class Listing extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-    // protected $fillable = [
-    //     'title',
-    //     'company', 
-    //     'location', 
-    //     'website', 
-    //     'email',
-    //     'description', 
+    // protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'company', 
+        'location', 
+        'website', 
+        'email',
+        'description', 
        
-    //   ];
+      ];
+      protected $with = ['user'];
+
       public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }

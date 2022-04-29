@@ -21,12 +21,13 @@ Route::post('/login', [AuthController::class, "login"]);
 //For testing purpose
 Route::post('/create',[ListingController::class, "create"]);
 Route::put('/{id}', [ListingController::class, "update"]);
+Route::delete('/{id}', [ListingController::class, "destroy"]);
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']],function () {
     //Route::post('/create',[ListingController::class, "create"]);
     // Route::put('/{id}', [ListingController::class, "update"]);
-    Route::delete('/{id}', [ListingController::class, "destroy"]);
+    //Route::delete('/{id}', [ListingController::class, "destroy"]);
     Route::post('/logout',[AuthController::class, "logout"]);
 });
 
