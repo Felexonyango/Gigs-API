@@ -32,4 +32,35 @@ class ListingTest extends TestCase
         $this->assertCount(1,Listing::all());
         
            }
+ /** @test */
+
+     public function a_post_is_updated(){
+
+         $this->withoutExceptionHandling();
+
+       $this->post('/api/create',[
+            'title' => 'Laravel',
+            'company' => 'Kune Food',
+            'location' => 'Nairobi',
+             'website' => 'www.kunefood.com',
+             'email' => 'kune@gmail.com',
+             'description' => 'To be php developer with 5 years of experience'
+        
+        ]);
+
+        $post=Listing::first();
+        $response=$this->put('/api/'.$post->id,[
+            'title' => 'React',
+            'company' => 'Kune Food',
+            'location' => 'Nairobi',
+             'website' => 'www.kunefood.com',
+             'email' => 'kune@gmail.com',
+             'description' => 'To be php developer with 5 years of experience'
+        
+
+        ]);
+
+        $this->assertEquals('React',Listing::first()->title);
+
+           }
 }

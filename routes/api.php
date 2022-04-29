@@ -18,11 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, "register"]);
 Route::post('/login', [AuthController::class, "login"]);
 
-//protected routes
+//For testing purpose
 Route::post('/create',[ListingController::class, "create"]);
-Route::group(['middleware'=>['auth:sanctum']],function () {
+Route::put('/{id}', [ListingController::class, "update"]);
 
-    Route::put('/{id}', [ListingController::class, "update"]);
+//protected routes
+Route::group(['middleware'=>['auth:sanctum']],function () {
+    //Route::post('/create',[ListingController::class, "create"]);
+    // Route::put('/{id}', [ListingController::class, "update"]);
     Route::delete('/{id}', [ListingController::class, "destroy"]);
     Route::post('/logout',[AuthController::class, "logout"]);
 });
