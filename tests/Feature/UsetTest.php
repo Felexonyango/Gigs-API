@@ -9,6 +9,7 @@ use Tests\TestCase;
 
 class UsetTest extends TestCase
 {
+    use RefreshDatabase;
     use DatabaseMigrations;
     /**
      * A basic feature test example.
@@ -26,6 +27,20 @@ class UsetTest extends TestCase
             'password' => 'password123'
 
         ]);
+        $response->assertOk(200);
+    }
+    public function test_user_on_login()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create();
+
+        $response = $this->post('/api/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        // $this->assertAuthenticated();
         $response->assertOk(200);
     }
 }
