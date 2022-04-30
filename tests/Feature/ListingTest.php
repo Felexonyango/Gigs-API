@@ -77,16 +77,16 @@ class ListingTest extends TestCase
 
  /** @test */
         
-           public function a_post_can_be_deleted(){
+        //    public function a_post_can_be_deleted(){
 
 
-            $this->withoutExceptionHandling();
+        //     $this->withoutExceptionHandling();
 
-            $post =User::factory()->create();
-            $this->$this->delete('/api/'.$post->id);
-            $this->assertResponseStatus(500);
-            $this->dontSeeInDatabase('posts', ['id' => $post->id]);
+        //     $post =Listing::factory()->count(1)->create();
+        //     $this->$this->delete('/api/'.$post->id);
+        //     $this->assertResponseStatus(500);
+        //     $this->dontSeeInDatabase('posts', ['id' => $post->id]);
              
 
-           }
+        //    }
 }
